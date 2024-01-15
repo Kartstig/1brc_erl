@@ -31,23 +31,10 @@ process_line(Line, Aggregate) ->
             false ->
                 Line
         end,
-    NewAggregate =
-        case string:split(StringLine, ";", all) of
-            [City, TempStr] when is_list(City) andalso is_list(TempStr) ->
-                try list_to_float(TempStr) of
-                    Temp ->
-                        update_aggregate(City, Temp, Aggregate)
-                catch
-                    _:_ ->
-                        % Handle non-float temperature or other parsing errors
-                        io:format("Couldn't read temperature from line: ~p~n", [Line]),
-                        Aggregate
-                end;
-            _ ->
-                io:format("Couldn't split line: ~p~n", [Line]),
-                Aggregate
-        end,
-    NewAggregate.
+    [City, TempStr] = string:split(StringLine, ";", all),
+    TempFloat = list_to_float(TempStr),
+
+    update_aggregate(City, TempFloat, Aggregate).
 
 update_aggregate(City, Temp, Aggregate) ->
     case maps:get(City, Aggregate, undefined) of
