@@ -1,0 +1,72 @@
+Tokyo;35.6897
+Jakarta;-6.1750
+Delhi;28.6100
+Guangzhou;23.1300
+Mumbai;19.0761
+Manila;14.5958
+Shanghai;31.1667
+São Paulo;-23.5500
+Seoul;37.5600
+Mexico City;19.4333
+Cairo;30.0444
+New York;40.6943
+Dhaka;23.7639
+Beijing;39.9040
+Kolkāta;22.5675
+Bangkok;13.7525
+Shenzhen;22.5350
+Moscow;55.7558
+Tokyo;35.6897
+Jakarta;-6.1750
+Delhi;28.6100
+Guangzhou;23.1300
+Mumbai;19.0761
+Manila;14.5958
+Shanghai;31.1667
+São Paulo;-23.5500
+Seoul;37.5600
+Mexico City;19.4333
+Cairo;30.0444
+New York;40.6943
+Dhaka;23.7639
+Beijing;39.9040
+Kolkāta;22.5675
+Bangkok;13.7525
+Shenzhen;22.5350
+Moscow;55.7558
+Tokyo;35.6897
+Jakarta;-6.1750
+Delhi;28.6100
+Guangzhou;23.1300
+Mumbai;19.0761
+Manila;14.5958
+Shanghai;31.1667
+São Paulo;-23.5500
+Seoul;37.5600
+Mexico City;19.4333
+Cairo;30.0444
+New York;40.6943
+Dhaka;23.7639
+Beijing;39.9040
+Kolkāta;22.5675
+Bangkok;13.7525
+Shenzhen;22.5350
+Moscow;55.7558
+Tokyo;35.6897
+Jakarta;-6.1750
+Delhi;28.6100
+Guangzhou;23.1300
+Mumbai;19.0761
+Manila;14.5958
+Shanghai;31.1667
+São Paulo;-23.5500
+Seoul;37.5600
+Mexico City;19.4333
+Cairo;30.0444
+New York;40.6943
+Dhaka;23.7639
+Beijing;39.9040
+Kolkāta;22.5675
+Bangkok;13.7525
+Shenzhen;22.5350
+Moscow;55.7558

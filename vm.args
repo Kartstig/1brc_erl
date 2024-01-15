@@ -1,0 +1,7 @@
+# vm.args
+-noshell
++A 32
+-smp auto
++P 1000000
++K true
++Q 65536
