@@ -6,13 +6,23 @@ start(Args) ->
     spawn(?MODULE, process_chunk, Args).
 
 process_chunk(Chunk, CollectorPid) ->
-    Lines = binary:split(Chunk, <<"\n">>, [global, trim]),
-    Aggregate = parse_lines(Lines, #{}),
-    CollectorPid ! {done, Aggregate}.
+    process_lines(Chunk, CollectorPid, #{}).
 
-parse_lines([], Aggregate) ->
-    Aggregate;
-parse_lines([Line | Rem], Aggregate) ->
+process_lines(<<>>, CollectorPid, Aggregate) ->
+    CollectorPid ! {done, Aggregate};
+process_lines(Chunk, CollectorPid, Aggregate) ->
+    {Line, Rest} = extract_line(Chunk, <<>>),
+    NewAggregate = process_line(Line, Aggregate),
+    process_lines(Rest, CollectorPid, NewAggregate).
+
+extract_line(<<>>, Accum) ->
+    {Accum, <<>>};
+extract_line(<<"\n", Rest/binary>>, Accum) ->
+    {Accum, Rest};
+extract_line(<<Char, Rest/binary>>, Accum) ->
+    extract_line(Rest, <<Accum/binary, Char>>).
+
+process_line(Line, Aggregate) ->
     % Convert binary to string if necessary
     StringLine =
         case erlang:is_binary(Line) of
@@ -37,7 +47,7 @@ parse_lines([Line | Rem], Aggregate) ->
                 io:format("Couldn't split line: ~p~n", [Line]),
                 Aggregate
         end,
-    parse_lines(Rem, NewAggregate).
+    NewAggregate.
 
 update_aggregate(City, Temp, Aggregate) ->
     case maps:get(City, Aggregate, undefined) of
