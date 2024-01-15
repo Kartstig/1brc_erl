@@ -23,18 +23,8 @@ extract_line(<<Char, Rest/binary>>, Accum) ->
     extract_line(Rest, <<Accum/binary, Char>>).
 
 process_line(Line, Aggregate) ->
-    % Convert binary to string if necessary
-    StringLine =
-        case erlang:is_binary(Line) of
-            true ->
-                binary_to_list(Line);
-            false ->
-                Line
-        end,
-    [City, TempStr] = string:split(StringLine, ";", all),
-    TempFloat = list_to_float(TempStr),
-
-    update_aggregate(City, TempFloat, Aggregate).
+    [CityBin, TempBin] = binary:split(Line, <<";">>),
+    update_aggregate(CityBin, binary_to_float(TempBin), Aggregate).
 
 update_aggregate(City, Temp, Aggregate) ->
     case maps:get(City, Aggregate, undefined) of
