@@ -2,22 +2,11 @@
 
 -include("profile.hrl").
 
--export([calculate_time_difference/2, gather_results/3, merge_aggregates/2, start/1]).
+-export([gather_results/3, merge_aggregates/2, start/1]).
 
 start(Args) ->
     Start = erlang:monotonic_time(millisecond),
     spawn(?MODULE, gather_results, [Start | Args]).
-
-calculate_time_difference({Mega1, Secs1, Micro1}, {Mega2, Secs2, Micro2}) ->
-    % Convert the entire timestamp to microseconds for each timestamp
-    TotalMicro1 = Mega1 * 1000000 * 1000000 + Secs1 * 1000000 + Micro1,
-    TotalMicro2 = Mega2 * 1000000 * 1000000 + Secs2 * 1000000 + Micro2,
-
-    % Find the difference in microseconds
-    MicroDiff = abs(TotalMicro1 - TotalMicro2),
-
-    % Convert the difference back to seconds
-    MicroDiff / 1000000.
 
 gather_results(Start, 0, Aggregate) ->
     io:format("Results: ~p~n", [Aggregate]),
